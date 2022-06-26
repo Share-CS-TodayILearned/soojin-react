@@ -1,30 +1,26 @@
 import React from 'react';
-// import styled from 'styled-components';
+import { useEffect } from 'react';
 import { Wrapper, Container, SpanNum, SpanText } from './style.js';
 
 function TripleReact() {
-  const numberArray = [
-    {
-      firstNumber: 400,
-      secondNumber: 340,
-      thirdNumber: 225,
-      fourthNumber: 280,
-    },
-  ];
+  const firstNumber = 700;
+  const secondNumber = 100;
+  const thirdNumber = 470;
 
   const animation = () => {
     setTimeout(function () {
-      // eslint-disable-next-line no-console
       console.log('2초후에 한번 실행됩니다.');
     }, 2000);
     const valueDisplays = document.querySelectorAll('.num');
-    const interval = 2000;
+    console.log(valueDisplays);
 
     valueDisplays.forEach(valueDisplay => {
+      console.log(valueDisplay);
       let startValue = 0;
       const endValue = parseInt(valueDisplay.getAttribute('data-val'));
-      // const endValue = parseInt()
-      const duration = Math.floor(interval / endValue);
+      console.log(endValue);
+      const duration = 2;
+      console.log('duration', duration);
       const counter = setInterval(function () {
         startValue += 1;
         valueDisplay.textContent = startValue;
@@ -35,36 +31,34 @@ function TripleReact() {
     });
   };
 
+  useEffect(() => {
+    animation();
+  }, []);
+
   return (
     <Wrapper className="wrapper">
       <Container className="container">
-        <SpanNum className="num" data-val="400">
+        <SpanNum className="num" data-val={firstNumber}>
           0
         </SpanNum>
-        <SpanText className="text">Meals Delivered</SpanText>
+        <SpanText className="text">만 명의 여행자</SpanText>
       </Container>
 
       <Container className="container">
-        <SpanNum className="num" data-val="340">
+        <SpanNum className="num" data-val={secondNumber}>
           0
         </SpanNum>
-        <SpanText className="text">Happy Customers</SpanText>
+        <SpanText className="text">만 개의 여행리뷰</SpanText>
       </Container>
 
       <Container className="container">
-        <SpanNum className="num" data-val="225">
+        <SpanNum className="num" data-val={thirdNumber}>
           0
         </SpanNum>
-        <SpanText className="text">Menu Items</SpanText>
+        <SpanText className="text">만 개의 여행일정</SpanText>
       </Container>
 
-      <Container className="container">
-        <SpanNum className="num" data-val="280">
-          0
-        </SpanNum>
-        <SpanText className="text">Five Stars</SpanText>
-      </Container>
-      <button onClick={animation}>click하면 바보~</button>
+      <button>click하면 바보~</button>
     </Wrapper>
   );
 }
