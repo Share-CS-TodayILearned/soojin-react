@@ -1,23 +1,21 @@
 import { useEffect, useState } from 'react';
 
 const useCountUp = target => {
-  const [count, setCount] = useState(0);
+  const [displayNumber, setDisplayNumber] = useState(0);
 
   useEffect(() => {
     const animationDuration = 2000;
-    const totalFrames = 60;
+    const totalFrames = 90;
     const frameDuration = animationDuration / totalFrames;
 
     let frame = 0;
 
     const counter = setInterval(() => {
-      frame++; // 1부터 60까지 증가한다
+      frame += 1;
       const currentCount = Math.round(target * (frame / totalFrames));
-      console.log('frame1111', target / totalFrames);
-      console.log('currentCount', currentCount);
 
       if (target >= currentCount) {
-        setCount(currentCount);
+        setDisplayNumber(currentCount);
       }
 
       if (frame === totalFrames) {
@@ -26,7 +24,7 @@ const useCountUp = target => {
     }, frameDuration);
   }, [target]);
 
-  return count;
+  return displayNumber;
 };
 
 export default useCountUp;
